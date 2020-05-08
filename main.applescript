@@ -195,8 +195,12 @@ on addTimeToQuery(query)
 		log "Already has " & giventime & "mins"
 		return query
 	on error errorMessage
-		display notification "Added with 5mins" with title "New Task:" subtitle query
-		log "Added new 5mins"
-		return query & " 5"
+		set mytimer to "5"
+		if query starts with "?" then
+			set mytimer to "25"
+		end if
+		display notification "~ " & mytimer & "mins" with title "New Task:" subtitle query
+		log "Added new task with " & mytimer & "mins"
+		return query & " " & mytimer
 	end try
 end addTimeToQuery
