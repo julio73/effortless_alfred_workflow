@@ -137,6 +137,28 @@ on pauseResumeTask()
 	end tell
 end pauseResumeTask
 
+----------------------------------
+-- Action: Add 5 minutes
+----------------------------------
+on addFiveMinutes()
+	set APPNAME to "Effortless"
+	launchApp(APPNAME)
+	tell application "System Events"
+		tell application process APPNAME
+			try
+				if (get title of menu bar item 1 of menu bar 2) is not "" then
+					my openMainMenuHelper(APPNAME)
+					tell application "System Events" to keystroke "r" using command down
+					log "Added 5 more minutes to task"
+					delay 0.1
+				end if
+			on error errorMessage
+				display notification errorMessage
+			end try
+		end tell
+	end tell
+end addFiveMinutes
+
 (*** HELPER ***)
 
 ----------------------------------
