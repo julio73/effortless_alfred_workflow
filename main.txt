@@ -1,21 +1,21 @@
 (* INPUT PROCESSOR *)
 on alfred_script(q)
 	try
-		if q starts with "??" then
+		if q starts with "🔜" then
 			set query to text ((offset of " " in q) + 1) thru -1 of q
 			quickAdd(query)
-		else if q starts with "??" then
+		else if q starts with "🔝" then
 			set query to text ((offset of " " in q) + 1) thru -1 of q
 			topAdd(query)
-		else if q starts with "?" then
+		else if q starts with "⏲" then
 			topAdd(q)
-		else if q starts with "?" then
+		else if q starts with "⏳" then
 			addFiveMinutes()
-		else if q starts with "?" then
+		else if q starts with "✅" then
 			completeTask()
-		else if q starts with "?" then
+		else if q starts with "⏯" then
 			pauseResumeTask()
-		else if q starts with "??" then
+		else if q starts with "🌪" then
 			clearList()
 		end if
 	on error errorMessage
@@ -219,7 +219,7 @@ on addTimeToQuery(query)
 		return query
 	on error errorMessage
 		set mytimer to "5"
-		if query starts with "?" then
+		if query starts with "⏲" then
 			set mytimer to "25"
 		end if
 		display notification "~ " & mytimer & "mins" with title "New Task:" subtitle query
