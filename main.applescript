@@ -1,20 +1,21 @@
+(* INPUT PROCESSOR *)
 on alfred_script(q)
-	set APPNAME to "Effortless"
-	display notification ((get properties) as string)
-	set TOP to "+"
-	set ADD to "="
-	set CLR to "-"
 	try
-		-- Our variables
-		set action to text 1 thru 1 of q
-		-- Our plan
-		if action is ADD then
-			set query to text 2 thru -1 of q
+		if q starts with "??" then
+			set query to text ((offset of " " in q) + 1) thru -1 of q
 			quickAdd(query)
-		else if action is TOP then
-			set query to text 2 thru -1 of q
+		else if q starts with "??" then
+			set query to text ((offset of " " in q) + 1) thru -1 of q
 			topAdd(query)
-		else if action is CLR then
+		else if q starts with "?" then
+			topAdd(q)
+		else if q starts with "?" then
+			addFiveMinutes()
+		else if q starts with "?" then
+			completeTask()
+		else if q starts with "?" then
+			pauseResumeTask()
+		else if q starts with "??" then
 			clearList()
 		end if
 	on error errorMessage
@@ -71,9 +72,9 @@ on quickAdd(query)
 	end tell
 end quickAdd
 
-----------------------------------
+------------------------------
 -- Action: Clear All Tasks
-----------------------------------
+------------------------------
 on clearList()
 	set APPNAME to "Effortless"
 	launchApp(APPNAME)
@@ -92,9 +93,9 @@ on clearList()
 	end tell
 end clearList
 
-----------------------------------
+------------------------------
 -- Action: Complete Task
-----------------------------------
+------------------------------
 on completeTask()
 	set APPNAME to "Effortless"
 	launchApp(APPNAME)
@@ -114,9 +115,9 @@ on completeTask()
 	end tell
 end completeTask
 
-----------------------------------
+-----------------------------------
 -- Action: Pause/Resume Task
-----------------------------------
+-----------------------------------
 on pauseResumeTask()
 	set APPNAME to "Effortless"
 	launchApp(APPNAME)
@@ -137,9 +138,9 @@ on pauseResumeTask()
 	end tell
 end pauseResumeTask
 
-----------------------------------
+------------------------------
 -- Action: Add 5 minutes
-----------------------------------
+------------------------------
 on addFiveMinutes()
 	set APPNAME to "Effortless"
 	launchApp(APPNAME)
@@ -177,9 +178,9 @@ on openListHelper(context)
 	end tell
 end openListHelper
 
----------------------------------
+--------------------------------
 -- Helper: Open the menu
----------------------------------
+--------------------------------
 on openMainMenuHelper(context)
 	log "Opening main menu"
 	tell application "System Events"
