@@ -131,6 +131,7 @@ on pauseResumeTask()
 					set actionTitle to get item 1 of (get title of menu item 4 of menu of menu bar item 1 of menu bar 2)
 					tell application "System Events" to keystroke "d" using command down
 					log actionTitle & "d task"
+					display notification "Task " & actionTitle & "d."
 					delay 0.1
 				end if
 			on error errorMessage
@@ -154,6 +155,8 @@ on addFiveMinutes()
 					tell application "System Events" to keystroke "r" using command down
 					log "Added 5 more minutes to task"
 					delay 0.1
+				else
+					display notification "No active task found" with title "Effortless"
 				end if
 			on error errorMessage
 				display notification errorMessage
