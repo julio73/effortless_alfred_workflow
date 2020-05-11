@@ -1,11 +1,16 @@
 (* INPUT PROCESSOR *)
 on alfred_script(q)
 	try
-			set query to text ((offset of " " in q) + 1) thru -1 of q
+		set query to q
 		if q starts with (character id 128284) then
+			if (count of q) > 2 then
+				set query to text ((offset of " " in q) + 1) thru -1 of q
+			end if
 			quickAdd(query)
-			set query to text ((offset of " " in q) + 1) thru -1 of q
 		else if q starts with (character id 128285) then
+			if (count of q) > 2 then
+				set query to text ((offset of " " in q) + 1) thru -1 of q
+			end if
 			topAdd(query)
 		else if q starts with (character id 9202) then
 			topAdd(q)
