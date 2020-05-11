@@ -1,3 +1,7 @@
+-- Effortless app's AppleScript Workflow for Alfred app
+-- author: Julio M
+-- version: v1.1
+
 (* INPUT PROCESSOR *)
 on alfred_script(q)
 	try
