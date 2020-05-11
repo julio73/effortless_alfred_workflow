@@ -17,6 +17,8 @@ on alfred_script(q)
 			pauseResumeTask()
 		else if q starts with "??" then
 			clearList()
+		else if q is not "" then
+			topAdd(q)
 		end if
 	on error errorMessage
 		display notification "Error: " & errorMessage & q
